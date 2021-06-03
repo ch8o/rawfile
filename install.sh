@@ -215,10 +215,12 @@ modify_agent_config() {
         return 0
     fi
 
-    echo "请先在管理面板上添加Agent，记录下密钥" &&
-        read -p "请输入一个解析到面板所在IP的域名（不可套CDN）: " nz_grpc_host &&
-        read -p "请输入面板RPC端口: (5555)" nz_grpc_port &&
-        read -p "请输入Agent 密钥: " nz_client_secret
+    #echo "请先在管理面板上添加Agent，记录下密钥" &&
+    #read -p "请输入一个解析到面板所在IP的域名（不可套CDN）: " nz_grpc_host &&
+    #read -p "请输入面板RPC端口: (5555)" nz_grpc_port &&
+    #read -p "请输入Agent 密钥: " nz_client_secret
+    nz_grpc_port=$2
+    nz_client_secret=$3
     if [[ -z "${nz_grpc_host}" || -z "${nz_client_secret}" ]]; then
         echo -e "${red}所有选项都不能为空${plain}"
         before_show_menu
