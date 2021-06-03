@@ -170,7 +170,7 @@ install_dashboard() {
     fi
 }
 
-install_agent(port,secret) {
+install_agent() {
     install_base
 
     echo -e "> 安装监控Agent"
@@ -199,14 +199,14 @@ install_agent(port,secret) {
         mv nezha-agent $NZ_AGENT_PATH &&
         rm -rf nezha-agent_linux_${os_arch}.tar.gz README.md
 
-    modify_agent_config $port $secret
+    modify_agent_config $1 $2
 
     if [[ $# == 0 ]]; then
         before_show_menu
     fi
 }
 
-modify_agent_config(port,secret) {
+modify_agent_config() {
     echo -e "> 修改Agent配置"
 
     wget -O $NZ_AGENT_SERVICE https://${GITHUB_RAW_URL}/script/nezha-agent.service >/dev/null 2>&1
@@ -219,8 +219,8 @@ modify_agent_config(port,secret) {
     #read -p "请输入一个解析到面板所在IP的域名（不可套CDN）: " nz_grpc_host &&
     #read -p "请输入面板RPC端口: (5555)" nz_grpc_port &&
     #read -p "请输入Agent 密钥: " nz_client_secret
-    nz_grpc_port=$port
-    nz_client_secret=$secret
+    nz_grpc_port=$1
+    nz_client_secret=$2
     echo 'nz_grpc_port:'$nz_grpc_port
     echo 'nz_client_secret:'$nz_client_secret
     if [[ -z "${nz_grpc_host}" || -z "${nz_client_secret}" ]]; then
