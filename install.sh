@@ -221,6 +221,8 @@ modify_agent_config() {
     #read -p "请输入Agent 密钥: " nz_client_secret
     nz_grpc_port=$2
     nz_client_secret=$3
+    echo 'nz_grpc_port:'$nz_grpc_port
+    echo 'nz_client_secret:'$nz_client_secret
     if [[ -z "${nz_grpc_host}" || -z "${nz_client_secret}" ]]; then
         echo -e "${red}所有选项都不能为空${plain}"
         before_show_menu
