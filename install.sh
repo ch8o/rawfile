@@ -219,7 +219,7 @@ modify_agent_config() {
     #read -p "请输入一个解析到面板所在IP的域名（不可套CDN）: " nz_grpc_host &&
     #read -p "请输入面板RPC端口: (5555)" nz_grpc_port &&
     #read -p "请输入Agent 密钥: " nz_client_secret
-    nz_grpc_port=$1
+    nz_grpc_host=$1
     nz_client_secret=$2
     echo 'nz_grpc_port:'$nz_grpc_port
     echo 'nz_client_secret:'$nz_client_secret
