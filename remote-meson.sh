@@ -13,7 +13,7 @@ sudo wget 'https://raw.githubusercontent.com/ch8o/rawfile/main/spawn.sh'
 sudo chmod +x meson.sh
 sudo chmod +x spawn.sh
 
-sudo ./meson.sh
+sudo ./meson.sh 50 p1LjdTyqASPMVTNo6MKR+w==
 "
 echo $cmd
 
