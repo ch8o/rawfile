@@ -3,8 +3,8 @@ import os
 import time
 import sys
 
-APIKEY = 'AIzaSyBfUOoC0chroUi1rhWL0vIrquBDHQxa1UE'
-BEARER_TOKEN = 'ya29.a0ARrdaM-wvpepjeiDeKPU5tuMjp-butUrdh-Z6uwUQ1Eikx6qVA-Aj0mhw5ZPqqLPHtZPkaZg0WDSflXgBaE-RZm9TCO58wK4yPL_dzNoNkx0DnP6j8SSM1lqqF3c3e_Zp4t-SYvxTCn04tbonO2r52j2KJjl'
+APIKEY = ''
+BEARER_TOKEN = ''
 PROJID = 'still-manifest-324108'
 TEMPLATE = 'instance-template-1'
 ZONE = 'asia-northeast3-a'
