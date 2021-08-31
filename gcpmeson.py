@@ -29,11 +29,13 @@ def checkStatus(iname):
 
 
 if __name__ == '__main__':
-    if len(sys.argv) < 2:
+    if len(sys.argv) < 3:
         print('arg1:instance name')
+        print('arg2:zone')
         exit(-1)
 
     name = sys.argv[1]
+    ZONE = sys.argv[2]
     url = 'https://compute.googleapis.com/compute/v1/projects/' + PROJID + '/zones/' + ZONE + '/instances?sourceInstanceTemplate=global%2FinstanceTemplates%2F' + TEMPLATE + '&key=' + APIKEY
     print(url)
     body = '{"machineType":"zones/' + ZONE + '/machineTypes/e2-micro","name":"' + name + '"}'
