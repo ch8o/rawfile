@@ -32,7 +32,7 @@ cat >config.json <<EOF
 {
     "nkn-node": {
       "noRemotePortCheck": true
-    }
+    },
     "SyncMode": "fast"
 }
 EOF
