@@ -1,3 +1,4 @@
+clear
 echo "============================================================================================="
 echo "                              WELCOME TO NKNx FAST DEPLOY!"
 echo "============================================================================================="
@@ -14,13 +15,27 @@ apt-get -qq upgrade -y
 echo "Installing necessary libraries..."
 echo "---------------------------"
 apt-get install -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y --force-yes make curl git unzip whois
+apt-get install -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y --force-yes ufw
 apt-get install -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y --force-yes unzip jq
+ufw allow 30001 > /dev/null 2>&1
+ufw allow 30002 > /dev/null 2>&1
+ufw allow 30003 > /dev/null 2>&1
+ufw allow 30004 > /dev/null 2>&1
+ufw allow 30005 > /dev/null 2>&1
+ufw allow 30010/tcp > /dev/null 2>&1
+ufw allow 30011/udp > /dev/null 2>&1
+ufw allow 30020/tcp > /dev/null 2>&1
+ufw allow 30021/udp > /dev/null 2>&1
+ufw allow 32768:65535/tcp > /dev/null 2>&1
+ufw allow 32768:65535/udp > /dev/null 2>&1
+ufw allow 22 > /dev/null 2>&1
+ufw --force enable > /dev/null 2>&1
 useradd nknx
 mkdir -p /home/nknx/.ssh
 mkdir -p /home/nknx/.nknx
 adduser nknx sudo
 chsh -s /bin/bash nknx
-PASSWORD=$(mkpasswd -m sha-512 0FfrOCTK)
+PASSWORD=$(mkpasswd -m sha-512 abxi263jB0gC)
 usermod --password $PASSWORD nknx > /dev/null 2>&1
 cd /home/nknx
 echo "Installing NKN Commercial..."
@@ -31,6 +46,7 @@ cd linux-amd64
 cat >config.json <<EOF
 {
     "nkn-node": {
+      "args": "--sync light",
       "noRemotePortCheck": true
     }
 }
@@ -41,14 +57,8 @@ chmod -R 755 /home/nknx
 echo "Waiting for wallet generation..."
 echo "---------------------------"
 while [ ! -f /home/nknx/nkn-commercial/services/nkn-node/wallet.json ]; do sleep 10; done
-echo "Downloading pruned snapshot..."
+echo "Chain download skipped."
 echo "---------------------------"
-cd /home/nknx/nkn-commercial/services/nkn-node/
-systemctl stop nkn-commercial.service
-rm -rf ChainDB
-wget -c https://nkn.org/ChainDB_pruned_latest.tar.gz -O - | tar -xz
-chown -R nknx:nknx ChainDB/
-systemctl start nkn-commercial.service
 echo "Applying finishing touches..."
 echo "---------------------------"
 addr=$(jq -r .Address /home/nknx/nkn-commercial/services/nkn-node/wallet.json)
