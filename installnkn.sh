@@ -10,13 +10,13 @@ echo
 echo "Hardening your OS..."
 echo "---------------------------"
 export DEBIAN_FRONTEND=noninteractive
-apt-get -qq update
-apt-get -qq upgrade -y
+sudo apt-get -qq update
+sudo apt-get -qq upgrade -y
 echo "Installing necessary libraries..."
 echo "---------------------------"
-apt-get install -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y --force-yes make curl git unzip whois
-apt-get install -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y --force-yes ufw
-apt-get install -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y --force-yes unzip jq
+sudo apt-get install -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y --force-yes make curl git unzip whois
+sudo apt-get install -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y --force-yes ufw
+sudo apt-get install -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y --force-yes unzip jq
 ufw allow 30001 > /dev/null 2>&1
 ufw allow 30002 > /dev/null 2>&1
 ufw allow 30003 > /dev/null 2>&1
