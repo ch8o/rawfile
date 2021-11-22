@@ -10,8 +10,8 @@ echo
 echo "Hardening your OS..."
 echo "---------------------------"
 export DEBIAN_FRONTEND=noninteractive
-sudo apt-get -qq update
-sudo apt-get -qq upgrade -y
+sudo apt-get update -y
+sudo apt-get upgrade -y
 echo "Installing necessary libraries..."
 echo "---------------------------"
 sudo apt-get install -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y --force-yes make curl git unzip whois
