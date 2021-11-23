@@ -11,12 +11,17 @@ echo "Hardening your OS..."
 echo "---------------------------"
 export DEBIAN_FRONTEND=noninteractive
 sudo apt-get update -y -q
+echo $?
 sudo apt-get upgrade -y -q
+echo $?
 echo "Installing necessary libraries..."
 echo "---------------------------"
 sudo apt-get install -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y --force-yes make curl git unzip whois
+echo $?
 sudo apt-get install -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y --force-yes ufw
+echo $?
 sudo apt-get install -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y --force-yes unzip jq
+echo $?
 ufw allow 30001 > /dev/null 2>&1
 ufw allow 30002 > /dev/null 2>&1
 ufw allow 30003 > /dev/null 2>&1
