@@ -10,18 +10,30 @@ echo
 echo "Hardening your OS..."
 echo "---------------------------"
 export DEBIAN_FRONTEND=noninteractive
+apt_install_res=-1
 sudo apt-get update -y -q
-echo $?
 sudo apt-get upgrade -y -q
-echo $?
 echo "Installing necessary libraries..."
 echo "---------------------------"
 sudo apt-get install -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y --force-yes make curl git unzip whois
-echo $?
 sudo apt-get install -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y --force-yes ufw
-echo $?
 sudo apt-get install -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y --force-yes unzip jq
-echo $?
+apt_install_res=$?
+installres(){
+        echo '--------reinstallres------'
+        sudo apt-get update -y -q
+        sudo apt-get upgrade -y -q
+        sudo apt-get install -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y --force-yes make curl git unzip whois
+        sudo apt-get install -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y --force-yes ufw
+        sudo apt-get install -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y --force-yes unzip jq
+        apt_install_res=$?
+}
+while [ $apt_install_res -ne 0 ]
+do      
+        sleep 5
+        installres
+        echo 'res is:'$apt_install_res
+done
 ufw allow 30001 > /dev/null 2>&1
 ufw allow 30002 > /dev/null 2>&1
 ufw allow 30003 > /dev/null 2>&1
