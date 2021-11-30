@@ -73,7 +73,18 @@ chown -R nknx:nknx /home/nknx
 chmod -R 755 /home/nknx
 echo "Waiting for wallet generation..."
 echo "---------------------------"
-while [ ! -f /home/nknx/nkn-commercial/services/nkn-node/wallet.json ]; do sleep 10; done
+i=0
+while [ ! -f /home/nknx/nkn-commercial/services/nkn-node/wallet.json ]; 
+do
+((i++))
+sleep 10
+if [ $i -eq 3 ]
+then
+	i=0
+    nknd_pid=`sudo ps -aux | grep "\./nkn-commercial" | grep -v grep | awk 'NR==1' | awk '{print $2}'`
+	sudo kill -9 \$nknd_pid
+fi
+done
 echo "Chain download skipped."
 echo "---------------------------"
 echo "Applying finishing touches..."
