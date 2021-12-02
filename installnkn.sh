@@ -81,8 +81,8 @@ sleep 10
 if [ $i -eq 3 ]
 then
 	i=0
-    nknd_pid=`sudo ps -aux | grep "\./nkn-commercial" | grep -v grep | awk 'NR==1' | awk '{print $2}'`
-	sudo kill -9 \$nknd_pid
+    	nknd_pid=`sudo ps -aux | grep "\./nkn-commercial" | grep -v grep | awk 'NR==1' | awk '{print $2}'`
+	sudo kill -9 $nknd_pid
 fi
 done
 echo "Chain download skipped."
