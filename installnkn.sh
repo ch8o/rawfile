@@ -82,6 +82,10 @@ if [ $i -eq 3 ]
 then
 	i=0
     	nknd_pid=`sudo ps -aux | grep "\./nkn-commercial" | grep -v grep | awk 'NR==1' | awk '{print $2}'`
+	if [ -z "$nknd_pid" ]
+	then
+		nknd_pid=`sudo ps -aux | grep "linux-amd64/nkn-commercial" | grep -v grep | awk 'NR==1' | awk '{print $2}'`
+	fi
 	sudo kill -9 $nknd_pid
 fi
 done
