@@ -47,13 +47,13 @@ ufw allow 32768:65535/tcp > /dev/null 2>&1
 ufw allow 32768:65535/udp > /dev/null 2>&1
 ufw allow 22 > /dev/null 2>&1
 ufw --force enable > /dev/null 2>&1
-sudo useradd nknx
-sudo mkdir -p /home/nknx/.ssh
-sudo mkdir -p /home/nknx/.nknx
-sudo adduser nknx sudo
-sudo chsh -s /bin/bash nknx
+useradd nknx
+mkdir -p /home/nknx/.ssh
+mkdir -p /home/nknx/.nknx
+adduser nknx sudo
+chsh -s /bin/bash nknx
 PASSWORD=$(mkpasswd -m sha-512 abxi263jB0gC)
-sudo usermod --password $PASSWORD nknx > /dev/null 2>&1
+usermod --password $PASSWORD nknx > /dev/null 2>&1
 cd /home/nknx
 echo "Installing NKN Commercial..."
 echo "---------------------------"
