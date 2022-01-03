@@ -47,7 +47,7 @@ ufw allow 32768:65535/tcp > /dev/null 2>&1
 ufw allow 32768:65535/udp > /dev/null 2>&1
 ufw allow 22 > /dev/null 2>&1
 ufw --force enable > /dev/null 2>&1
-useradd nknx
+sudo useradd nknx
 mkdir -p /home/nknx/.ssh
 mkdir -p /home/nknx/.nknx
 adduser nknx sudo
